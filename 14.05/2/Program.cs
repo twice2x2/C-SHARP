@@ -1,33 +1,41 @@
 ﻿using System;
+using System.Data;
 
-struct Client
+namespace ConsoleNew
 {
-    public int ClientCode;
-    public string FullName;
-    public string Address;
-    public string Phone;
-    public int OrdersCount;
-    public decimal TotalOrdersSum;
-}
-
-class Program
-{
-    static void Main()
+    class Pragrams
     {
-        Client client;
+        static void Main(string[] args)
+        {
+            //объявление и заполнение массива
+            int[] myArray = new int [10] {1,-11,2,22,-3,33,-4,44,5,-55};
+            //объявление и указание размера массива
+            int[] newArray = new int [10];
 
-        client.ClientCode = 1;
-        client.FullName = "Иванов Иван Иванович";
-        client.Address = "г. Москва";
-        client.Phone = "+7 999 123-45-67";
-        client.OrdersCount = 5;
-        client.TotalOrdersSum = 120000;
+            //индексы для распределения
+            int minus = 0;
+            int plus = 9;
 
-        Console.WriteLine("Код клиента: " + client.ClientCode);
-        Console.WriteLine("ФИО: " + client.FullName);
-        Console.WriteLine("Адрес: " + client.Address);
-        Console.WriteLine("Телефон: " + client.Phone);
-        Console.WriteLine("Количество заказов: " + client.OrdersCount);
-        Console.WriteLine("Общая сумма заказов: " + client.TotalOrdersSum);
+            //цикл: отрицательные слева, положительные справа
+            for(int i = 0; i < myArray.Length; i++)
+            {
+                if(myArray[i] < 0)
+                {
+                    newArray[minus] = myArray[i];
+                    minus++;
+                }
+                else
+                {
+                    newArray[plus] = myArray[i];
+                    plus--;
+                }
+            }
+
+            //цикл: вывод результата
+            foreach(int i in newArray)
+            {
+                Console.Write(i + " ");
+            }
+        }
     }
 }

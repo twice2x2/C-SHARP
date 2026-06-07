@@ -1,21 +1,30 @@
 ﻿using System;
 
-struct RequestItem
+namespace ConsoleNew
 {
-    public string Product;
-    public int Quantity;
-}
-
-class Program
-{
-    static void Main()
+    class Programs
     {
-        RequestItem item;
+        static void Main(string[] args)
+        {
+            //объявление и заполнение массива
+            int[] myArray = new int [5] {1,1,1,5,5};
 
-        item.Product = "Мышь";
-        item.Quantity = 3;
+            //Ввод числа и преобразование строки в число
+            Console.Write("Введите число для поиска в массиве: ");
+            string numberString = Console.ReadLine();
+            int number = Convert.ToInt32(numberString);
 
-        Console.WriteLine("Товар: " + item.Product);
-        Console.WriteLine("Количество: " + item.Quantity);
+            //счетчик
+            int count = 0;
+
+            for(int i = 0; i < myArray.Length; i++)
+            {
+                if(myArray[i] == number)
+                {
+                    count++;
+                }
+            }
+            Console.WriteLine("Это число встречается " + count + " раз");
+        }
     }
 }
