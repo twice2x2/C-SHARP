@@ -1,41 +1,36 @@
 ﻿using System;
-using System.Reflection.Metadata;
 
-namespace ConsoleNew
+struct Request
 {
-    class Programs
+    public int OrderCode;
+    public int ClientCode;
+    public DateTime OrderDate;
+    public int ProductCount;
+    public decimal ProductPrice;
+
+    public decimal OrderSum
     {
-        static void Main(string[] args)
-        {
-            //объявление и заполнение двумерного массива
-            int [,] myArray = {{1,2,3}, {4,5,6}};
+        get { return ProductCount * ProductPrice; }
+    }
+}
 
-            //ввод выбора стобцов для обмена местами
-            Console.Write("Введите первый номер столбца: ");
-            string oneString = Console.ReadLine();
-            int one = Convert.ToInt32(oneString);
+class Program
+{
+    static void Main()
+    {
+        Request request;
 
-            Console.Write("Введите второй номер столбца: ");
-            string twoString = Console.ReadLine();
-            int two = Convert.ToInt32(twoString);
+        request.OrderCode = 1001;
+        request.ClientCode = 1;
+        request.OrderDate = DateTime.Now;
+        request.ProductCount = 4;
+        request.ProductPrice = 1500;
 
-            //цикл: смена столбцов выбранные пользователем
-            for(int i = 0; i < myArray.GetLength(0); i++)
-            {
-                int temp = myArray[i,one - 1];
-                myArray[i,one - 1] = myArray[i,two - 1];
-                myArray[i,two - 1] = temp;
-            }
-
-            //цикл: вывод двумерного массива
-            for(int i = 0; i < myArray.GetLength(0); i++)
-            {
-                for(int j = 0; j < myArray.GetLength(1); j++)
-                {
-                    Console.Write(myArray[i,j] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
+        Console.WriteLine("Код заказа: " + request.OrderCode);
+        Console.WriteLine("Код клиента: " + request.ClientCode);
+        Console.WriteLine("Дата заказа: " + request.OrderDate.ToShortDateString());
+        Console.WriteLine("Количество товаров: " + request.ProductCount);
+        Console.WriteLine("Цена товара: " + request.ProductPrice);
+        Console.WriteLine("Сумма заказа: " + request.OrderSum);
     }
 }
